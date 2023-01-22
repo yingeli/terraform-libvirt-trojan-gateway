@@ -1,14 +1,7 @@
-#resource "libvirt_pool" "images" {
-#  name = "images"
-#  type = "dir"
-#  path = "/home/yingeli/images"
-#}
-
 # We fetch the latest ubuntu release image from their mirrors
-resource "libvirt_volume" "ubuntu-2204-minimal" {
-  name   = "ubuntu-2204-minimal"
-  pool   = libvirt_pool.images.name
-  source = "https://cloud-images.ubuntu.com/minimal/releases/jammy/release/ubuntu-22.04-minimal-cloudimg-amd64.img"
+resource "libvirt_volume" "ubuntu-2004-minimal" {
+  name   = "ubuntu-2004-minimal"
+  source = "https://cloud-images.ubuntu.com/minimal/releases/focal/release/ubuntu-20.04-minimal-cloudimg-amd64.img"
   format = "qcow2"
 }
 
@@ -53,7 +46,7 @@ module "trojan-gateway" {
     libvirt = libvirt
   }
   name           = "trojan-gateway"
-  base_volume_id = libvirt_volume.ubuntu-2204-minimal.id
+  base_volume_id = libvirt_volume.ubuntu-2004-minimal.id
   #pool           = libvirt_pool.images.name
   user_data      = data.template_cloudinit_config.user_data.rendered
   network_config = data.template_file.network_config.rendered
