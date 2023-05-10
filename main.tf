@@ -17,7 +17,7 @@ data "template_file" "server_config" {
   template = file("${path.module}/server_config.cfg")
 
   vars = {
-    trojan_server    = "ygtj.eastasia.cloudapp.azure.com"
+    trojan_server    = "ygtr.southeastasia.cloudapp.azure.com"
     trojan_password  = "abcd1234!"    
     trojan_port      = 1080
   }
